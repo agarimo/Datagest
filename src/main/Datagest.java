@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import main.capturador.Capturador;
 import util.Url;
@@ -27,9 +28,31 @@ public class Datagest {
     public static List<Url> listUrl;
     public static vista.Main ventana;
     public static Capturador capturador;
+    public static int conect;
 
     public static void main(String[] args) {
+        initCon();
         inicio();
+    }
+
+    private static void initCon() {
+        String[] conexion = {"SERVIDOR", "SERVER ROJO"};
+
+        String aux = (String) JOptionPane.showInputDialog(null,
+                "A que servidor debo conectarme?",
+                "Conexión",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                conexion,
+                conexion[0]);
+
+        if (aux.equals("SERVIDOR")) {
+            conect = 0;
+            System.out.println("Conectando a SERVIDOR");
+        } else {
+            conect = 1;
+            System.out.println("Conectando a SERVER-ROJO");
+        }
     }
 
     private static void inicio() {
@@ -40,7 +63,6 @@ public class Datagest {
         lookAndFeel();
         init.setBarra(0, "Cargando configuración");
         configuracion();
-//        con = new Conexion("CONEXION", "oficina.redcedeco.net", "3306", "admin", "admin");
         creaVentana();
         init.setBarra(0, "Conectado");
         init.dispose();
@@ -113,18 +135,22 @@ public class Datagest {
 
     public static boolean conexion() {
         boolean conectado = false;
-        Conexion aux;
-        Iterator it = listCon.iterator();
 
-        while (it.hasNext() && !conectado) {
-            init.setBarra(0, "Conectando...");
-            aux = (Conexion) it.next();
-
-            if (testCon(aux)) {
-                con = aux;
-                conectado = true;
-            }
+        switch (conect) {
+            case 0:
+                con = new Conexion("SERVIDOR", "192.168.1.40", "3306", "admin", "IkuinenK@@m.s84");
+                System.out.println("Conectando a SERVIDOR");
+                break;
+            case 1:
+                con = new Conexion("SERVER-ROJO", "192.168.1.41", "3306", "admin", "IkuinenK@@m.s84");
+                System.out.println("Conectando a SERVER-ROJO");
+                break;
         }
+
+        if (testCon(con)) {
+            conectado = true;
+        }
+
         return conectado;
     }
 
