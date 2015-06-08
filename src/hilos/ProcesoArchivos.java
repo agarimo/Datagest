@@ -88,7 +88,7 @@ public class ProcesoArchivos extends Thread {
         String str, datos = "";
         String separador = "------------------------\n";
 
-        File archivo = new File(directorio, origen.getIdOrigen() + "Z-" + getNombreArchivo(origen, boletin) + ".txt");
+        File archivo = new File(directorio, origen.getIdOrigen() + "-" + getNombreArchivo(origen, boletin) + ".txt");
 
         if (!archivo.exists()) {
             archivo.createNewFile();
@@ -141,16 +141,16 @@ public class ProcesoArchivos extends Thread {
         int mes = cal.get(Calendar.MONTH);
         mes++;
         if (mes < 10) {
-            str = str + mes + "--";
+            str = str + mes + "Z-";
         } else {
             if (mes == 10) {
-                str = str + "X--";
+                str = str + "XZ-";
             }
             if (mes == 11) {
-                str = str + "Y--";
+                str = str + "YZ-";
             }
             if (mes == 12) {
-                str = str + "Z--";
+                str = str + "ZZ-";
             }
         }
 
