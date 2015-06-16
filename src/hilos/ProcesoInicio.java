@@ -42,7 +42,7 @@ public class ProcesoInicio extends Thread {
             Sql.ejecutar("DELETE FROM datagest.descarga where datediff(curdate(),fecha)>60", Datagest.con);
             Datagest.ventana.setLabelInfoBase("Base actualizada");
         } catch (NullPointerException e) {
-            actualizaBase();
+//            actualizaBase();
         }
     }
 
@@ -67,14 +67,9 @@ public class ProcesoInicio extends Thread {
             origen = (Origen) it.next();
             lista = util.Listados.edictos(origen);
             if (!lista.isEmpty()) {
-                if (compruebaCorelacionEdictos(lista)) {
-//                    System.out.println("Correcto");
-                } else {
-//                    System.out.println("Faltan");
+                if (!compruebaCorelacionEdictos(lista)) {
                     buscaElemento(lista);
                 }
-            } else {
-//                System.out.println("Origen sin edictos");
             }
         }
         if (!listaEdicto.isEmpty()) {
