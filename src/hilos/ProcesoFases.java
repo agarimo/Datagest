@@ -102,12 +102,12 @@ public class ProcesoFases extends Thread {
     }
 
     private void compruebaFase(Edicto edicto) {
-        String str = descargaDatos(edicto);
+        String st = descargaDatos(edicto);
         Iterator it = gf.get(new Origen(edicto.getOrigen())).iterator();
 
         while (it.hasNext()) {
             Fase aux = (Fase) it.next();
-            boolean bol = aux.contiene(str);
+            boolean bol = aux.contiene(st);
 
             if (bol) {
                 fase = aux;

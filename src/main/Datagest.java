@@ -157,9 +157,9 @@ public class Datagest {
     private static boolean testCon(Conexion aux) {
         boolean bool;
         try {
-            Connection conect = DriverManager.getConnection(aux.getRuta(), aux.getUsuario(), aux.getPass());
+            Connection conecta = DriverManager.getConnection(aux.getRuta(), aux.getUsuario(), aux.getPass());
             bool = true;
-            conect.close();
+            conecta.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             bool = false;

@@ -1,7 +1,6 @@
 package entidades;
 
 import main.Datagest;
-import vista.Visual;
 
 /**
  *

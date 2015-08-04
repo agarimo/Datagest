@@ -90,7 +90,7 @@ public final class Capturador {
 
     public int getTotalCsv() {
         int total = -1;
-        String query = "SELECT idDescarga from datagest.descarga where fecha=" + Datagest.entrecomillar(Datagest.imprimeFecha(fecha)) +" group by csv;";
+        String query = "SELECT idDescarga from datagest.descarga where fecha=" + Datagest.entrecomillar(Datagest.imprimeFecha(fecha)) + " group by csv;";
 
         try {
             Sql bd = new Sql(Datagest.con);
@@ -211,10 +211,10 @@ public final class Capturador {
 
         while (it.hasNext()) {
             aux = (Descarga) it.next();
-            if (bd.buscar(aux.buscaDescarga()) < 0) {
-                bd.ejecutar(aux.creaDescarga());
-                listTotal.add(aux);
-            }
+//            if (bd.buscar(aux.buscaDescarga()) < 0) {
+            bd.ejecutar(aux.creaDescarga());
+            listTotal.add(aux);
+//            }
             listaString.append(Datagest.imprimeFecha(aux.getFecha()));
             listaString.append("||");
             listaString.append(aux.getParametros());
