@@ -98,24 +98,33 @@ public class ProcesoArchivos extends Thread {
 
         while (it.hasNext()) {
             edicto = (Edicto) it.next();
-            str = "BCN2 "+getEnlace(edicto)+" \n"+getCabecera(edicto.getTipo(), origen.getCodigo()) + "\n" + edicto.getDatos();
+            str = "BCN2 " + getEnlace(edicto) + " \n"
+                    + "BCN5 " + nombreOrigen(origen.getNombre()) + " \n"
+                            + getCabecera(edicto.getTipo(), origen.getCodigo()) + "\n"
+                            + edicto.getDatos();
             datos = datos + str + separador;
             datos = limpiar(datos);
             datos = datos.replace(str, "\n\r" + str + "\n\r");
         }
         Archivo.escribeArchivo(archivo, datos);
     }
-    
-    private String getEnlace(Edicto edicto){
-        String str="";
+
+    private String getEnlace(Edicto edicto) {
+        String str = "";
         try {
-            Sql bd=new Sql(Datagest.con);
-            str=bd.getEnlaceDescarga(edicto);
+            Sql bd = new Sql(Datagest.con);
+            str = bd.getEnlaceDescarga(edicto);
             bd.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProcesoArchivos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return str;
+    }
+
+    private String nombreOrigen(String str) {
+        String aux = str.toUpperCase();
+        aux = aux.replace("AY", "AYUNTAMIENTO DE");
+        return aux;
     }
 
     private String getNombreArchivo(Origen or, Boletin bo) {
