@@ -99,9 +99,10 @@ public class ProcesoArchivos extends Thread {
         while (it.hasNext()) {
             edicto = (Edicto) it.next();
             str = "BCN2 " + getEnlace(edicto) + " \n"
+                    + getCabecera(edicto.getTipo(), origen.getCodigo()) + "\n"
+                    + "TESTRA" + "\n"
                     + "BCN5 " + nombreOrigen(origen.getNombre()) + " \n"
-                            + getCabecera(edicto.getTipo(), origen.getCodigo()) + "\n"
-                            + edicto.getDatos();
+                    + edicto.getDatos();
             datos = datos + str + separador;
             datos = limpiar(datos);
             datos = datos.replace(str, "\n\r" + str + "\n\r");
