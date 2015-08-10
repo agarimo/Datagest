@@ -150,16 +150,16 @@ public class ProcesoArchivos extends Thread {
         int mes = cal.get(Calendar.MONTH);
         mes++;
         if (mes < 10) {
-            str = str + mes + "Z-";
+            str = str + mes + "P-";
         } else {
             if (mes == 10) {
-                str = str + "XZ-";
+                str = str + "XP-";
             }
             if (mes == 11) {
-                str = str + "YZ-";
+                str = str + "YP-";
             }
             if (mes == 12) {
-                str = str + "ZZ-";
+                str = str + "ZP-";
             }
         }
 
