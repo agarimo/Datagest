@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
  * @author Agárimo
  */
 public class Regex {
-    public static int fecha=0;
-    public static int dni=1;
-    public static int matricula=2;
-    public static int precepto=3;
-    public static int articulo=4;
+    public static int FECHA=0;
+    public static int DNI=1;
+    public static int MATRICULA=2;
+    public static int PRECEPTO=3;
+    public static int ARTICULO=4;
     
     private static List<String> listPrecepto=new ArrayList<String>();
     private static Pattern pt;

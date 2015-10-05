@@ -107,7 +107,7 @@ public class FormatData {
 
         while (continua) {
             aux = list.get(list.size() - 1);
-            if (Regex.buscar(aux, Regex.fecha) || Regex.buscar(aux, Regex.dni)) {
+            if (Regex.buscar(aux, Regex.FECHA) || Regex.buscar(aux, Regex.DNI)) {
                 continua = false;
             } else {
                 list.remove(list.size() - 1);
