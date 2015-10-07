@@ -300,7 +300,7 @@ public class CapturadorGui extends javax.swing.JDialog {
         if (setFechaCapturador()) {
             Datagest.capturador.setRemoto(aux);
             mostrarPanel("panelCapturador");
-            this.setLocation(1150, 550);
+            this.setLocation(1050, 550);
             Datagest.capturador.iniciaCapturador();
         } else {
             JOptionPane.showMessageDialog(this, "Debes seleccionar una fecha", "ERROR", JOptionPane.ERROR_MESSAGE);
